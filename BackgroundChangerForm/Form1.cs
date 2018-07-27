@@ -19,43 +19,50 @@ namespace BackgroundChangerForm
         {
             InitializeComponent();
         }
-
+        
         private void update_background()
         {
-            string fileName;
-            if (get_random_num(1,100) <= favFreq)
+            if ((string)chooseDirButton.Tag == "Set")
             {
-                if(files_fav.Count >= 1)
+                string fileName;
+                if (get_random_num(1, 100) <= favFreq)
                 {
-                    fileName = get_random_favorite();
+                    if (files_fav.Count >= 1)
+                    {
+                        fileName = get_random_favorite();
+                    }
+                    else
+                    {
+                        int fileIndex = get_random_num(0, files.Count);
+                        fileName = files.ElementAt(fileIndex);
+                    }
                 }
                 else
                 {
                     int fileIndex = get_random_num(0, files.Count);
                     fileName = files.ElementAt(fileIndex);
                 }
-            }
-            else
-            {
-                int fileIndex = get_random_num(0, files.Count);
-                fileName = files.ElementAt(fileIndex);
-            }
-            set_background(pathDir + "\\" + fileName, (PicStyle) currentStyle);
-            add_to_exclusions(fileName);
-            remove_excluded_images();
-            write_list_to_excfile(excludeFileName);
-            pictureBox1.Load(pathDir + "\\" + fileName);
-            imageNameTextBox.Text = fileName;
+                set_background(pathDir + "\\" + fileName, (PicStyle)currentStyle);
+                add_to_exclusions(fileName);
+                remove_excluded_images();
+                write_list_to_excfile(excludeFileName);
+                pictureBox1.Load(pathDir + "\\" + fileName);
+                imageNameTextBox.Text = fileName;
 
-            if (files_fav.Contains(fileName))
-            {
-                favoriteCheckBox.Checked = true;
-                favoriteToolStripMenuItem.Checked = true;
+                if (files_fav.Contains(fileName))
+                {
+                    favoriteCheckBox.Checked = true;
+                    favoriteToolStripMenuItem.Checked = true;
+                }
+                else
+                {
+                    favoriteCheckBox.Checked = false;
+                    favoriteToolStripMenuItem.Checked = false;
+                }
             }
             else
             {
-                favoriteCheckBox.Checked = false;
-                favoriteToolStripMenuItem.Checked = false;
+                //throw error
             }
 
         }
@@ -93,9 +100,11 @@ namespace BackgroundChangerForm
         {
             if(imageDirDialog.ShowDialog() == DialogResult.OK)
             {
+                chooseDirButton.Tag = "Set";
                 pathDir = imageDirDialog.SelectedPath;
                 imageDirLabel.Text = imageDirDialog.SelectedPath;
                 update_config_file(configFileName);
+                Load_functions();
             }
         }
 
@@ -116,7 +125,8 @@ namespace BackgroundChangerForm
                     switch (counter)
                     {
                         case 0:
-                            pathDir = Path.GetFullPath(line.Replace(@"\", @"\\"));
+                            if(line.Length > 1)
+                                pathDir = Path.GetFullPath(line.Replace(@"\", @"\\"));
                             break;
                         case 1:
                             countdown = Int32.Parse(line);
@@ -138,33 +148,22 @@ namespace BackgroundChangerForm
             {
                 if(imageDirDialog.ShowDialog() == DialogResult.OK)
                 {
+                    chooseDirButton.Tag = "Set";
                     pathDir = imageDirDialog.SelectedPath;
-                    countdown = 5000;
-                    bufferSize = 20;
-                    currentStyle = (int) PicStyle.Stretch;
-                    favFreq = 10;
                 }
-                else
-                {
-                    Close();
-                }
-
+                countdown = 5000;
+                bufferSize = 20;
+                currentStyle = (int)PicStyle.Stretch;
+                favFreq = 10;
             }
 
 
             switchCounter.Interval = countdown*1000;
-
-            get_images_from_path(pathDir);
-            get_image_exclusions(excludeFileName);
-            get_image_favorites(favFileName);
-            remove_excluded_images();
-            imageDirLabel.Text = pathDir;
             numericUpDownBuffer.Value = bufferSize;
             numericUpDownTimer.Value = countdown;
             styleComboBox.SelectedIndex = currentStyle;
             favoriteFreq_numericUpDown1.Value = favFreq;
-            randomize_images();
-            update_background();
+            Load_functions();
             switchCounter.Enabled = true;
 
         }
@@ -186,6 +185,7 @@ namespace BackgroundChangerForm
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            closeToolStripMenuItem.Tag = "Exit";
             Close();
         }
 
@@ -263,6 +263,37 @@ namespace BackgroundChangerForm
             favFreq = (int)favoriteFreq_numericUpDown1.Value;
             update_config_file(configFileName);
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(e.CloseReason == CloseReason.UserClosing)
+            {
+               if((string)closeToolStripMenuItem.Tag != "Exit")
+                {
+                    e.Cancel = true;
+                }
+                Hide();
+            }
+        }
+
+
+        /////////////////////////
+
+        public void Load_functions()
+        {
+            if ((string)chooseDirButton.Tag == "Set")
+            {
+                get_images_from_path(pathDir);
+                get_image_exclusions(excludeFileName);
+                get_image_favorites(favFileName);
+                remove_excluded_images();
+                imageDirLabel.Text = pathDir;
+                randomize_images();
+                update_background();
+            }
+        }
+
+
     }
 
 }

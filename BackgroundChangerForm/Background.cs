@@ -29,7 +29,7 @@ namespace BackgroundChangerForm
 
         public static void get_images_from_path(string dir)
         {
-            try
+            try 
             {
                 foreach (string f in Directory.GetFiles(dir))
                 {
@@ -38,7 +38,7 @@ namespace BackgroundChangerForm
             }
             catch
             {
-
+                //none
             }
         }
 

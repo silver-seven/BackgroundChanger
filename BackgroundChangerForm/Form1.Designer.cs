@@ -37,6 +37,8 @@
             this.hideButton = new System.Windows.Forms.Button();
             this.chooseDirButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.favFrequencyLabel = new System.Windows.Forms.Label();
+            this.favoriteFreq_numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.pathLabel = new System.Windows.Forms.Label();
             this.imageNameLabel = new System.Windows.Forms.Label();
             this.styleLabel = new System.Windows.Forms.Label();
@@ -58,16 +60,14 @@
             this.switchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.favoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.favoriteFreq_numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.favFrequencyLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.favoriteFreq_numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBuffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimer)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextIconRightClick.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.favoriteFreq_numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // SwitchButton
@@ -154,6 +154,29 @@
             this.panel3.Size = new System.Drawing.Size(153, 177);
             this.panel3.TabIndex = 2;
             // 
+            // favFrequencyLabel
+            // 
+            this.favFrequencyLabel.AutoSize = true;
+            this.favFrequencyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.favFrequencyLabel.Location = new System.Drawing.Point(3, 126);
+            this.favFrequencyLabel.Name = "favFrequencyLabel";
+            this.favFrequencyLabel.Size = new System.Drawing.Size(70, 13);
+            this.favFrequencyLabel.TabIndex = 12;
+            this.favFrequencyLabel.Text = "Fav Freq %";
+            // 
+            // favoriteFreq_numericUpDown1
+            // 
+            this.favoriteFreq_numericUpDown1.Location = new System.Drawing.Point(74, 124);
+            this.favoriteFreq_numericUpDown1.Name = "favoriteFreq_numericUpDown1";
+            this.favoriteFreq_numericUpDown1.Size = new System.Drawing.Size(76, 20);
+            this.favoriteFreq_numericUpDown1.TabIndex = 11;
+            this.favoriteFreq_numericUpDown1.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.favoriteFreq_numericUpDown1.ValueChanged += new System.EventHandler(this.favoriteFreq_numericUpDown1_ValueChanged);
+            // 
             // pathLabel
             // 
             this.pathLabel.AutoSize = true;
@@ -204,6 +227,7 @@
             // 
             this.imageNameTextBox.Location = new System.Drawing.Point(74, 16);
             this.imageNameTextBox.Name = "imageNameTextBox";
+            this.imageNameTextBox.ReadOnly = true;
             this.imageNameTextBox.Size = new System.Drawing.Size(76, 20);
             this.imageNameTextBox.TabIndex = 6;
             // 
@@ -211,6 +235,7 @@
             // 
             this.imageDirLabel.Location = new System.Drawing.Point(74, 150);
             this.imageDirLabel.Name = "imageDirLabel";
+            this.imageDirLabel.ReadOnly = true;
             this.imageDirLabel.Size = new System.Drawing.Size(76, 20);
             this.imageDirLabel.TabIndex = 5;
             // 
@@ -331,14 +356,14 @@
             // pauseToolStripMenuItem
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pauseToolStripMenuItem.Text = "Pause";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseButton_Click);
             // 
             // switchToolStripMenuItem
             // 
             this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
-            this.switchToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.switchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.switchToolStripMenuItem.Text = "Switch";
             this.switchToolStripMenuItem.Click += new System.EventHandler(this.Switch_Click);
             // 
@@ -346,39 +371,16 @@
             // 
             this.favoriteToolStripMenuItem.CheckOnClick = true;
             this.favoriteToolStripMenuItem.Name = "favoriteToolStripMenuItem";
-            this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.favoriteToolStripMenuItem.Text = "Favorite";
             this.favoriteToolStripMenuItem.Click += new System.EventHandler(this.favoriteToolStripMenuItem_CheckedChanged);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Text = "Exit";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
-            // favoriteFreq_numericUpDown1
-            // 
-            this.favoriteFreq_numericUpDown1.Location = new System.Drawing.Point(74, 124);
-            this.favoriteFreq_numericUpDown1.Name = "favoriteFreq_numericUpDown1";
-            this.favoriteFreq_numericUpDown1.Size = new System.Drawing.Size(76, 20);
-            this.favoriteFreq_numericUpDown1.TabIndex = 11;
-            this.favoriteFreq_numericUpDown1.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.favoriteFreq_numericUpDown1.ValueChanged += new System.EventHandler(this.favoriteFreq_numericUpDown1_ValueChanged);
-            // 
-            // favFrequencyLabel
-            // 
-            this.favFrequencyLabel.AutoSize = true;
-            this.favFrequencyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.favFrequencyLabel.Location = new System.Drawing.Point(3, 126);
-            this.favFrequencyLabel.Name = "favFrequencyLabel";
-            this.favFrequencyLabel.Size = new System.Drawing.Size(70, 13);
-            this.favFrequencyLabel.TabIndex = 12;
-            this.favFrequencyLabel.Text = "Fav Freq %";
             // 
             // Form1
             // 
@@ -392,16 +394,17 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "BackgroundChanger";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.favoriteFreq_numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBuffer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimer)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextIconRightClick.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.favoriteFreq_numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
