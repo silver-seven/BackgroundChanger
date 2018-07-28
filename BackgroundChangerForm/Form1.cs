@@ -146,11 +146,11 @@ namespace BackgroundChangerForm
             }
             else
             {
-                if(imageDirDialog.ShowDialog() == DialogResult.OK)
+              /*  if(imageDirDialog.ShowDialog() == DialogResult.OK)
                 {
                     chooseDirButton.Tag = "Set";
                     pathDir = imageDirDialog.SelectedPath;
-                }
+                }*/
                 countdown = 5000;
                 bufferSize = 20;
                 currentStyle = (int)PicStyle.Stretch;
@@ -193,8 +193,11 @@ namespace BackgroundChangerForm
         {
             if(pauseButton.Text == "Pause")
             {
-                switchCounter.Enabled = false;
-                pauseButton.Text = "Run";
+                if ((string)chooseDirButton.Tag == "Set")
+                {
+                    switchCounter.Enabled = false;
+                    pauseButton.Text = "Run";
+                }
             }
             else
             {

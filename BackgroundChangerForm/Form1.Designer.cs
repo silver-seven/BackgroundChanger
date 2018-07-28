@@ -122,6 +122,7 @@
             this.hideButton.TabIndex = 4;
             this.hideButton.Text = "Hide";
             this.hideButton.UseVisualStyleBackColor = true;
+            this.hideButton.Visible = false;
             this.hideButton.Click += new System.EventHandler(this.hideButton_Click);
             // 
             // chooseDirButton
@@ -356,14 +357,14 @@
             // pauseToolStripMenuItem
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.pauseToolStripMenuItem.Text = "Pause";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseButton_Click);
             // 
             // switchToolStripMenuItem
             // 
             this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
-            this.switchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.switchToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.switchToolStripMenuItem.Text = "Switch";
             this.switchToolStripMenuItem.Click += new System.EventHandler(this.Switch_Click);
             // 
@@ -371,14 +372,14 @@
             // 
             this.favoriteToolStripMenuItem.CheckOnClick = true;
             this.favoriteToolStripMenuItem.Name = "favoriteToolStripMenuItem";
-            this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.favoriteToolStripMenuItem.Text = "Favorite";
             this.favoriteToolStripMenuItem.Click += new System.EventHandler(this.favoriteToolStripMenuItem_CheckedChanged);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.closeToolStripMenuItem.Text = "Exit";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
